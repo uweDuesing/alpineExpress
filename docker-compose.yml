@@ -1,0 +1,18 @@
+version: '3.4'
+services:
+  web:
+    build:
+      context: .
+      target: developer
+    ports:
+      - "4200:4200"
+    volumes:
+      - .:/container/:Z
+    environment:
+      - BUILD_NUMBER=nobuildforlocalenv
+
+
+    tty: true
+    stdin_open: true
+    entrypoint: ash
+    privileged: true
