@@ -1,8 +1,15 @@
 export class ApiController {
 
-    public helloWorld = (reg, res): Promise<string> => {
-        return new Promise ((resolve, reject) =>{
-            resolve(JSON.stringify({msg: 'hello world'}));
+    public helloWorld = (req, res): Promise<string> => {
+        return new Promise((resolve, reject) => {
+
+            if (req.body?.user !== undefined) {
+                const user = req.body['user'];
+
+                resolve(JSON.stringify({msg: 'hello ' +user}));
+            } else {
+                resolve(JSON.stringify({msg: 'hello world'}));
+            }
         });
     };
 }

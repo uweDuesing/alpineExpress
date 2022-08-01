@@ -11,4 +11,14 @@ apiRouter.get('/hello', async (_req, res) => {
         res.render('uv/indicator_error');
     });
 });
+apiRouter.post('/hello', async (_req, res) => {
+    const controller = new ApiController();
+
+    controller.helloWorld(_req, _req).then ((response) => {
+        res.setHeader('Content-Type', 'application/json');
+        res.end(response);
+    }, error => {
+        res.render('uv/indicator_error');
+    });
+});
 export default apiRouter
