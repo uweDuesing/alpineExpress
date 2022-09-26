@@ -53,6 +53,7 @@
   },
   "dependencies": {
     "@types/jsdom": "^16.2.14",
+    "@types/socket.io": "^3.0.2",
     "astronomy-bundle": "^7.5.3",
     "copyfiles": "^2.4.1",
     "cors": "^2.8.5",
@@ -65,7 +66,9 @@
     "pug": "^3.0.2",
     "rxjs": "~6.5.5",
     "sass": "^1.49.7",
+    "sharp": "^0.31.0",
     "shelljs": "^0.8.5",
+    "socket.io": "^4.5.1",
     "swagger-jsdoc": "^6.2.1",
     "swagger-ui-express": "^4.5.0",
     "tsoa": "^3.14.1"

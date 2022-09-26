@@ -5,7 +5,6 @@ import Router from './routes/default.route';
 
 import path from 'path';
 const PORT = process.env.PORT || 4200;
-
 const app: Application = express();
 app.set('view engine', 'pug');
 app.use(express.json());

@@ -19,12 +19,43 @@
     "application/json"
   ],
   "paths": {
-    "/hello": {
+    "/hello/world": {
       "get": {
         "summary": "Returns a hello world message",
-        "operationId": "hello",
+        "operationId": "hello GET",
+        "tags": [
+          "world get"
+        ],
+
+        "responses": {
+          "200": {
+            "description": "A string welcoming you",
+            "headers": {
+              "x-next": {
+                "type": "string",
+                "description": "A link to the next page of responses"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hello/user": {
+      "post": {
+        "summary": "Returns a hello message with your username",
+        "operationId": "hello POST",
         "tags": [
           "world"
+        ],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "query",
+            "description": "A valid email address",
+            "required": false,
+            "type": "string",
+            "format": "int32"
+          }
         ],
         "responses": {
           "200": {

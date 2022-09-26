@@ -4,7 +4,7 @@ import {body, validationResult} from 'express-validator';
 
 const apiRouter = express.Router();
 
-apiRouter.get('/hello', async (_req, res) => {
+apiRouter.get('/hello/world', async (_req, res) => {
     const controller = new ApiController();
     controller.helloWorld(_req, _req).then((response) => {
         res.setHeader('Content-Type', 'application/json');
@@ -14,10 +14,11 @@ apiRouter.get('/hello', async (_req, res) => {
     });
 });
 apiRouter.post(
-    '/hello',
+    '/hello/user',
     body('user').isEmail(),
 
     async (_req, res) => {
+    console.log(_req.body)
         const controller = new ApiController();
         const errors = validationResult(_req);
         if (!errors.isEmpty()) {
