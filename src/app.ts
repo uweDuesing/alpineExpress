@@ -1,11 +1,28 @@
 import express, { Application } from 'express';
 import morgan from 'morgan';
 import Router from './routes/default.route';
-
+import * as WebSocket from 'ws';
 
 import path from 'path';
 const PORT = process.env.PORT || 4200;
 const app: Application = express();
+
+const wsServer = WebSocket.server({
+    noServer: true
+})
+
+wsServer.on("connection", function(ws) {    // what should a websocket do on connection
+    ws.on("message", function(msg) {        // what to do on message event
+        wsServer.clients.forEach(function each(client) {
+            if (client.readyState === WebSocket.OPEN) {     // check if client is ready
+                client.send(msg.toString());
+            }
+        })
+    })
+})
+
+
+
 app.set('view engine', 'pug');
 app.use(express.json());
 app.use(morgan('tiny'));
@@ -26,6 +43,19 @@ app.all('*',function(req, res, next){
 });
 
 app.use(Router);
-app.listen(PORT, () => {
+const httpServer = app.listen(PORT, () => {
     console.log('Server is running on port', PORT); // NOSONAR
+});
+
+httpServer.on('upgrade', async function upgrade(request, socket, head) {      //handling upgrade(http to websocekt) event
+
+
+    // if(Math.random() > 0.5){
+    //     return socket.end("HTTP/1.1 401 Unauthorized\r\n", "ascii")     //proper connection close in case of rejection
+    // }
+
+    //emit connection when request accepted
+    wsServer.handleUpgrade(request, socket, head, function done(ws) {
+        wsServer.emit('connection', ws, request);
+    });
 });
