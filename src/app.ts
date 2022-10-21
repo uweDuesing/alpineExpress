@@ -11,17 +11,20 @@ const app: Application = express();
 const wsServer = new WebSocketServer({
     noServer: true
 })
-
+let counter = 0;
 wsServer.on("connection", (ws) => {    // what should a websocket do on connection
-
-    setTimeout(() => {
+    setInterval(() => {
         wsServer.clients.forEach(function each(client) {
             if (client.readyState === WebSocket.OPEN) {     // check if client is ready
-                client.send('Socket Message!');
+                client.send(counter);
             }
         })
-    }, 5000)
+    }, 1000)
 })
+
+setInterval(() => {
+    counter ++;
+}, 1000)
 
 
 app.set('view engine', 'pug');
