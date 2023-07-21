@@ -8,24 +8,15 @@
     }
   },
   "basePath": "/api",
-  "schemes": [
-    "http",
-    "https"
-  ],
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
-  ],
+  "schemes": ["http", "https"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
   "paths": {
     "/hello/world": {
       "get": {
         "summary": "Returns a hello world message",
         "operationId": "hello GET",
-        "tags": [
-          "world get"
-        ],
+        "tags": ["world get"],
 
         "responses": {
           "200": {
@@ -44,9 +35,7 @@
       "post": {
         "summary": "Returns a hello message with your username",
         "operationId": "hello POST",
-        "tags": [
-          "world"
-        ],
+        "tags": ["world"],
         "parameters": [
           {
             "name": "user",

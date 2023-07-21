@@ -1,4 +1,4 @@
-version: '3.4'
+version: "3.4"
 services:
   web:
     build:
@@ -10,7 +10,6 @@ services:
       - .:/container/:Z
     environment:
       - BUILD_NUMBER=nobuildforlocalenv
-
 
     tty: true
     stdin_open: true

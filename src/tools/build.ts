@@ -1,9 +1,9 @@
-import shell from 'shelljs';
+import shell from "shelljs";
 
-const buildFolder = './build/';
+const buildFolder = "./build/";
 
-const folders = new Set(['./src/views', './src/public']);
+const folders = new Set(["./src/views", "./src/public"]);
 
 folders.forEach((folder) => {
-    shell.cp('-R', folder, buildFolder);
+  shell.cp("-R", folder, buildFolder);
 });
