@@ -6,7 +6,7 @@ const apiRouter = express.Router();
 
 apiRouter.get("/hello/world", async (_req, res) => {
   const controller = new ApiController();
-  controller.helloWorld(_req, _req).then(
+  controller.helloWorld(_req).then(
     (response) => {
       res.setHeader("Content-Type", "application/json");
       res.end(response);
@@ -21,7 +21,6 @@ apiRouter.post(
   body("user").isEmail(),
 
   async (_req, res) => {
-    console.log(_req.body);
     const controller = new ApiController();
     const errors = validationResult(_req);
     if (!errors.isEmpty()) {
