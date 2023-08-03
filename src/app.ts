@@ -19,12 +19,9 @@ wsServer.on("connection", (ws) => {    // what should a websocket do on connecti
                 client.send(counter);
             }
         })
-    }, 1000)
+        counter ++;
+    }, 100)
 })
-
-setInterval(() => {
-    counter ++;
-}, 1000)
 
 
 app.set('view engine', 'pug');
