@@ -18,7 +18,6 @@ apiRouter.post(
     body('user').isEmail(),
 
     async (_req, res) => {
-    console.log(_req.body)
         const controller = new ApiController();
         const errors = validationResult(_req);
         if (!errors.isEmpty()) {

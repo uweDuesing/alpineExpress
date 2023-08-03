@@ -1,15 +1,20 @@
+import {User} from "../user.module";
+
 export class ApiController {
 
     public helloWorld = (req, res): Promise<string> => {
         return new Promise((resolve, reject) => {
 
             if (req.body?.user !== undefined) {
-                const user = req.body['user'];
 
-                resolve(JSON.stringify({msg: 'hello ' +user}));
+                const user = new User();
+                    user.getAllUsers().then((data) => {
+                        resolve(JSON.stringify(data));
+                    })
             } else {
                 resolve(JSON.stringify({msg: 'hello world'}));
             }
         });
     };
 }
+
